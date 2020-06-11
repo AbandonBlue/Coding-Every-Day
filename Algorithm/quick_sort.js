@@ -1,4 +1,4 @@
-function merge_sort(nums){
+function quick_sort(nums){
     function divide(nums){
         if(nums.length == 0){
             return [];
@@ -25,5 +25,5 @@ let array = [100, 100, 1, 3, 22, 312, 123123, 123, 1000];
 console.log(array);
 
 // sorted array
-array = merge_sort(array);
+array = quick_sort(array);
 console.log(array);
