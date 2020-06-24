@@ -1,5 +1,18 @@
 import nltk
+import re
 from collections import defaultdict
+
+def text_preprocessing(text):
+    # &t編碼我沒解決
+    text = text.lower()
+    text = re.sub(pattern=r'\:\)', repl='happy', string=text, count=0)
+    text = re.sub(pattern=r'#', repl='', string=text, count=0)
+    text = re.sub(pattern=r'http(s)?://(.)* ', repl=' ', string=text, count=0)
+    text = re.sub(pattern=r'@(.)* ', repl=' ', string=text, count=0)
+    text = re.sub(pattern=r'(omg|wtf)', repl='i can\'t believe it!', string=text, count=0)
+    return text
+    
+
 
 def get_missing_ratio(df, percent):
     """
@@ -38,3 +51,10 @@ def get_reverse_dict(d, is_one_to_one=False):
             reversed_d[v].append(k)
     
     return reversed_d
+
+
+pos = {'colorless': 'ADJ', 'ideas': 'N', 'sleep': 'V', 'furiously': 'ADV', 'excellent': 'ADJ'}
+print(pos)
+print()
+reversed_d = get_reverse_dict(pos)
+print(reversed_d)

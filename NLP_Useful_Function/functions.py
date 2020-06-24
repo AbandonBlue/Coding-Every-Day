@@ -77,5 +77,26 @@ def anneal(text, segs, iterations, cooling_rate):
 
 
 
+
+def ie_preprocess(document):
+    import nltk
+    # pipeline for 信息提取
+    """
+    
+    """
+    sentences = nltk.sent_tokenize(document)                        # 分句
+    sentences = [nltk.word_tokenize(sent) for sent in sentences]    # 分詞
+    sentences = [nltk.pos_tag(sent) for sent in sentences]          # pos_tag
+    return sentences
+
+
+def get_np_tree(sent, grammar="NP: {<DT>?<JJ>*<NN>}", ):
+    # 搭配ie_preprocess處理完的結果去繼續使用
+    import nltk
+    cp = nltk.RegexpParser(grammar)
+    result = cp.parse(sent)
+    result.draw()
+    return result
+
 if __name__ == "__main__":
     pass
